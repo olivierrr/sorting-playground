@@ -54,41 +54,28 @@
    * executes cb every loop
    * exposes control methods
    */
-  var loopManager = (function (cb) {
-
-    var interval = 200
-      , intervalID
-
-    function setInterval (val) {
-      pause()
-      interval = val
-      resume()
-    }
-
-    function pause () {
-      window.clearInterval(intervalID)
-      intervalID = null
-    }
-
-    function resume () {
+  function IntervalManager (cb) {
+    this.cb = cb
+    this.interval = 200
+    this.intervalID = null
+  }
+  IntervalManager.prototype.stop = function() {
+      window.clearInterval(this.intervalID)
+      this.intervalID = null
+  }
+  IntervalManager.prototype.resume = function() {
       pause()
       cb()
-      intervalID = window.setInterval(cb, interval)
-    }
-
-    function step () {
-      if(!intervalID) cb() 
-    }
-
-    return {
-      setInterval: setInterval,
-      pause: pause,
-      resume: resume,
-      step: step
-    }
-
-  })( function(){console.log('LOOP')} /* test fn */ )
-
+      intervalID = window.setInterval(cb, this.interval)
+  }
+  IntervalManager.prototype.step = function() {
+      if(!this.intervalID) this.cb() 
+  }
+  IntervalManager.prototype.setInterval = function(val) {
+      this.pause()
+      this.interval = val
+      this.resume()
+  }
 
   drawBars(getSizes(W, 0.30, 80))
 
