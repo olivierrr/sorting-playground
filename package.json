@@ -1,0 +1,28 @@
+{
+  "name": "sorting-playground",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test/*.js | faucet \n exit 0",
+    "dev": "beefy index:bundle.js --live",
+    "deploy": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:olivierrr/sorting-playground.git"
+  },
+  "author": "olivierrr",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/olivierrr/sorting-playground/issues"
+  },
+  "homepage": "https://github.com/olivierrr/sorting-playground",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "beefy": "^2.1.1",
+    "faucet": "0.0.1",
+    "tape": "^3.0.2"
+  }
+}
